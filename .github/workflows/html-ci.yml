@@ -1,0 +1,22 @@
+name: HTML CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  html-check:
+    run-on: ubuntu-latest
+
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v4
+      
+      - name: Check HTML file
+        run: |
+          if [ -f index.html ]; then
+            echo "HTML file exists"
+          else
+            echo "HTML file not found"
+            exit 1
+          fi
